@@ -10,6 +10,6 @@ public class HelloController {
     @RequestMapping("/hello")
     @ResponseBody
     public String sysHello(){
-        return "hello.2018";
+        return "hello.2018.04.26";
     }
 }
