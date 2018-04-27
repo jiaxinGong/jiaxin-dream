@@ -9,5 +9,8 @@
         <module name="jiaxin-dream" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="jiaxin-dream" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
