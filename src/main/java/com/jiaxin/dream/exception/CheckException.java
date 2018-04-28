@@ -6,52 +6,56 @@ package com.jiaxin.dream.exception;/**
  */
 
 /**
- * @description: 处理异常
+ * @description: 校验类异常
  * @author: gongjiaxin
  * @create: 2018-04-27 10:49
  **/
-public class ProcessException extends Exception {
+public class CheckException extends Exception {
     private String code;
     private String desc;
     private Object data;
 
-    public ProcessException() {
+    public CheckException() {
     }
 
-    public ProcessException(String message) {
+    public CheckException(String message) {
         super(message);
+        this.desc = message;
     }
 
-    public ProcessException(String message, Throwable cause) {
+    public CheckException(String message, Throwable cause) {
         super(message, cause);
+        this.desc = message;
     }
 
-    public ProcessException(Throwable cause) {
+    public CheckException(Throwable cause) {
         super(cause);
     }
 
 
-    public ProcessException(String code, String message, Object data, Throwable cause) {
+    public CheckException(String code, String message, Object data, Throwable cause) {
         super(message, cause);
         this.code = code;
         this.data = data;
+        this.desc = message;
     }
 
-    public ProcessException( String code, String message, String desc, Object data, Throwable cause) {
+    public CheckException(String code, String message, String desc, Object data, Throwable cause) {
         this(code, message, data, cause);
         this.desc = desc;
     }
 
-    public ProcessException( String code, String message) {
+    public CheckException(String code, String message) {
         this( code, message, (Object)null, (Throwable)null);
+        this.desc = message;
     }
 
-    public ProcessException(String code, String message, String desc) {
+    public CheckException(String code, String message, String desc) {
         this(code, message, (Object)null, (Throwable)null);
         this.desc = desc;
     }
 
-    protected ProcessException(Object data, String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    protected CheckException(Object data, String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
         this.data = data;
     }
