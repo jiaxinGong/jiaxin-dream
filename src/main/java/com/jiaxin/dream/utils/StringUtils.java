@@ -5,9 +5,14 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class StringUtils extends org.springframework.util.StringUtils {
-    public static boolean isNotEmpty(Object str) {
-        return !isEmpty(str);
+public class StringUtils {
+
+    public static boolean isEmpty(CharSequence cs){
+        return org.apache.commons.lang3.StringUtils.isEmpty(cs);
+    }
+
+    public static boolean isNotEmpty(CharSequence cs){
+        return !isEmpty(cs);
     }
 
     public static Map<String, String> parseAddress(String address) {
@@ -104,6 +109,7 @@ public class StringUtils extends org.springframework.util.StringUtils {
     }
 
     public static void main(String[] args) {
+//        StringUtils.isEmpty()
         System.out.println(StringUtils.parseAddress("北京市通州区大梁镇"));
     }
 }

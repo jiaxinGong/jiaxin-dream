@@ -10,7 +10,7 @@ package com.jiaxin.dream.exception;/**
  * @author: gongjiaxin
  * @create: 2018-04-27 10:49
  **/
-public class CheckException extends Exception {
+public class CheckException extends RuntimeException {
     private String code;
     private String desc;
     private Object data;
@@ -20,12 +20,10 @@ public class CheckException extends Exception {
 
     public CheckException(String message) {
         super(message);
-        this.desc = message;
     }
 
     public CheckException(String message, Throwable cause) {
         super(message, cause);
-        this.desc = message;
     }
 
     public CheckException(Throwable cause) {
@@ -39,27 +37,6 @@ public class CheckException extends Exception {
         this.data = data;
         this.desc = message;
     }
-
-    public CheckException(String code, String message, String desc, Object data, Throwable cause) {
-        this(code, message, data, cause);
-        this.desc = desc;
-    }
-
-    public CheckException(String code, String message) {
-        this( code, message, (Object)null, (Throwable)null);
-        this.desc = message;
-    }
-
-    public CheckException(String code, String message, String desc) {
-        this(code, message, (Object)null, (Throwable)null);
-        this.desc = desc;
-    }
-
-    protected CheckException(Object data, String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
-        this.data = data;
-    }
-
 
     public String getCode() {
         return code;
