@@ -24,6 +24,11 @@
         <commons-lang3.version>3.4</commons-lang3.version>
         <logback-ext-spring>0.1.4</logback-ext-spring>
         <commons.io.version>2.6</commons.io.version>
+        <httpclient.version>4.5.2</httpclient.version>
+        <httpmime.version>${httpclient.version}</httpmime.version>
+        <httpasyncclient.version>4.0</httpasyncclient.version>
+        <fastJson.version>1.2.44</fastJson.version>
+        <hibernate.version>4.2.0.Final</hibernate.version>
     </properties>
 
     <dependencies>
@@ -136,6 +141,36 @@
             <artifactId>junit</artifactId>
             <version>4.11</version>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+          <groupId>org.apache.httpcomponents</groupId>
+          <artifactId>httpclient</artifactId>
+          <version>${httpclient.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpmime</artifactId>
+            <version>${httpmime.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpasyncclient</artifactId>
+            <version>${httpasyncclient.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastJson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>{hibernate.version}</version>
         </dependency>
     </dependencies>
 
