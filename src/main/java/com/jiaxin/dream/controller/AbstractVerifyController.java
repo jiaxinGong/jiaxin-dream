@@ -1,9 +1,4 @@
-package com.jiaxin.dream.controller;/**
- * @Author: bufoon
- * @Email: song.anling@zyxr.com
- * @Datetime: Created In 2018/4/27 10:40
- * @Desc: as follows.
- */
+package com.jiaxin.dream.controller;
 
 import com.jiaxin.dream.exception.CheckException;
 import com.jiaxin.dream.utils.IPUtil;

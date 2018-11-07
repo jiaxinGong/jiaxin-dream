@@ -1,7 +1,10 @@
 import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.ConcurrentHashMap;
@@ -35,5 +38,14 @@ public class Test {
         sb.append("");
 
         double hh = 0.00001;
+    }
+
+
+    @org.junit.Test
+    public void test(){
+        List list = new ArrayList();
+        List synchronizedList =  Collections.synchronizedList(list);
+        synchronizedList.add(null);
+
     }
 }

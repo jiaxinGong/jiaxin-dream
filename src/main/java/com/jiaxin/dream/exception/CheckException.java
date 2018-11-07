@@ -1,9 +1,4 @@
 package com.jiaxin.dream.exception;/**
- * @Author: bufoon
- * @Email: song.anling@zyxr.com
- * @Datetime: Created In 2018/4/27 10:49
- * @Desc: as follows.
- */
 
 /**
  * @description: 校验类异常

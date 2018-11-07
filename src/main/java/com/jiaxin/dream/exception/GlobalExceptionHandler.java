@@ -1,9 +1,4 @@
-package com.jiaxin.dream.exception;/**
- * @Author: jiaxin Gong
- * @Email: gong.jiaxin@szrttx.com
- * @Datetime: Created In 2018/4/27 16:36
- * @Desc: as follows.
- */
+package com.jiaxin.dream.exception;
 
 import com.alibaba.fastjson.JSON;
 import com.jiaxin.dream.model.ResultBean;

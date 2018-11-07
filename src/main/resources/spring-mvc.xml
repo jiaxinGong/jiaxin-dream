@@ -12,13 +12,12 @@
     <mvc:annotation-driven/>
     <context:component-scan base-package="com.jiaxin.dream"/>
 
-    <aop:aspectj-autoproxy />
-    <bean id="controllerAop" class="com.jiaxin.dream.aop.ControllerAOP" />
+    <aop:aspectj-autoproxy/>
+    <bean id="controllerAop" class="com.jiaxin.dream.aop.ControllerAOP"/>
     <aop:config>
         <aop:aspect id="myAop" ref="controllerAop">
-            <aop:pointcut id="target"
-                          expression="execution(public com.jiaxin.dream.model.ResultBean *(..))" />
-            <aop:around method="handlerControllerMethod" pointcut-ref="target" />
+            <aop:pointcut id="target" expression="execution(public com.jiaxin.dream.model.ResultBean *(..))"/>
+            <aop:around method="handlerControllerMethod" pointcut-ref="target"/>
         </aop:aspect>
     </aop:config>
 

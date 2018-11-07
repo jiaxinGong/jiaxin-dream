@@ -3,9 +3,12 @@ package httpClient;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.jiaxin.dream.utils.httpclient.common.HttpConfig;
+import com.jiaxin.dream.utils.httpclient.exception.HttpProcessException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ThreadPoolExecutor;
 import model.OpenApiParams;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.http.Header;
@@ -31,15 +34,116 @@ public class TestHttp {
 //    private String urlPrefix = "http://192.168.190.205:9006/gateway";
 //    private String urlPrefix = "https://api.jldloan.com/risk-gateway-web";
 //    private String urlPrefix = "http://192.168.190.205:8088/risk-gateway-web";
-    private String urlPrefix = "http://192.168.9.101/risk-gateway-web";
+//    private String urlPrefix = "http://192.168.9.101/risk-gateway-web";
+//    private String urlPrefix = "http://127.0.0.1:8082/thor/api/v1";
+    private String urlPrefix = "http://japi-dev.wolaidai.com/thor-operation/api/v1";
 //    private String urlPrefix = "http://101.fout.zyxr.com:2880/risk-gateway-web"; //http://112.fout.zyxr.com:2880/
 
-
     @Test
-    public void testGetRequest() {
-
+    public void findAllPartner() throws HttpProcessException {
+        String url = urlPrefix + "/partner/findsBypartnerCode";
+        String res = HttpClientUtil.get(HttpConfig.custom().url(url));
+        System.out.println("=========================res=========================");
+        System.out.println(res);
+        System.out.println("=========================res=========================");
+    }
+    @Test
+    public void findProducts() throws HttpProcessException {
+        String url = urlPrefix + "/partner/findProductsByPartnerCode?partnerCode=";
+        String res = HttpClientUtil.get(HttpConfig.custom().url(url));
+        System.out.println("=========================res=========================");
+        System.out.println(res);
+        System.out.println("=========================res=========================");
     }
 
+    @Test
+    public void testPostRequest() throws HttpProcessException {
+        String url = urlPrefix + "/platform/findByCityOrProvince";
+        Map<Object, Object> param = new HashMap<>();
+        param.put("cityCode", "140800");
+//        param.put("provinceCode","1");
+//        param.put("hotFlag",true);
+        param.put("pageNo", "1");
+        param.put("pageSize", "20");
+        String res = HttpClientUtil
+            .post(HttpConfig.custom().url(url).json(JSON.toJSONString(param)));
+        System.out.println("=========================res=========================");
+        System.out.println(res);
+        System.out.println("=========================res=========================");
+    }
+
+    @Test
+    public void testFindAllHotCity() throws HttpProcessException {
+        String url = urlPrefix + "/platform/findHotCityNames";
+
+        String res = HttpClientUtil.get(HttpConfig.custom().url(url));
+        System.out.println("=========================res=========================");
+        System.out.println(res);
+        System.out.println("=========================res=========================");
+    }
+
+    @Test
+    public void testPlatforms() throws HttpProcessException {
+        Header[] headers = HttpHeader.custom()
+            .other("Content-Type", "application/json")
+            .other("X-User-Token", "b4c1c035c4e0008d00fcc20cebc6b970").build();
+
+        String url = urlPrefix + "/platform/findHotCityNames";
+
+        String res = HttpClientUtil.get(HttpConfig.custom().url(url).headers(headers));
+        System.out.println("=========================res=========================");
+        System.out.println(res);
+        System.out.println("=========================res=========================");
+    }
+
+    @Test
+    public void testfindByProductCode() throws HttpProcessException {
+        String url = urlPrefix + "/platform/findByProductCode/AX-XJD";
+
+        String res = HttpClientUtil.get(HttpConfig.custom().url(url));
+        System.out.println("=========================res=========================");
+        System.out.println(res);
+        System.out.println("=========================res=========================");
+    }
+//    findByProductCode/{productCode}
+
+    @Test
+    public void testaddPlatformRequest() throws HttpProcessException {
+        String url = urlPrefix + "/platform/add";
+        Map<Object, Object> param = new HashMap<>();
+//        param.put("parterCode", "test66");
+        param.put("icon", "http://web.wolaidai.com/webapp/yhd/img/platform-ax.png");
+        param.put("city", "666");
+        param.put("province", "666666");
+        param.put("productCode", "AX-6");
+        param.put("partnerId", "1");
+//        param.put("pageNo","1");
+//        param.put("pageSize","3");
+        String res = HttpClientUtil
+            .post(HttpConfig.custom().url(url).json(JSON.toJSONString(param)));
+        System.out.println("=========================res=========================");
+        System.out.println(res);
+        System.out.println("=========================res=========================");
+    }
+
+    @Test
+    public void testupDatePlatformRequest() throws HttpProcessException {
+        String url = urlPrefix + "/platform/update";
+        Map<Object, Object> param = new HashMap<>();
+        param.put("id", 3);
+        param.put("name", "test33");
+        param.put("icon", "http://web.wolaidai.com/webapp/yhd/img/platform-ax.png");
+        param.put("city", "222223");
+        param.put("province", "3323");
+//        param.put("productCode","AX-XJD4");
+//        param.put("pageNo","1");
+//        param.put("pageSize","3");
+        String res = HttpClientUtil
+            .post(HttpConfig.custom().url(url).json(JSON.toJSONString(param)));
+        System.out.println("=========================res=========================");
+        System.out.println(res);
+        System.out.println("=========================res=========================");
+    }
 
     /**
      * 我来贷查询用户信息
@@ -53,12 +157,15 @@ public class TestHttp {
         String mobile = "15863279927";
         String bizData = "{\"mobile\":\"" + mobile + "\"}";
         String html = HttpClientUtil
-            .post(HttpConfig.custom().url(tokenurl).json(JSON.toJSONString(openApiParams(bizData))));
+            .post(
+                HttpConfig.custom().url(tokenurl).json(JSON.toJSONString(openApiParams(bizData))));
         JSONObject jsonObject = JSON.parseObject(html);
         if (jsonObject == null) {
             return;
         }
-        JSONObject data = jsonObject.get("data") != null ? JSON.parseObject(jsonObject.get("data").toString()) : null;
+        JSONObject data =
+            jsonObject.get("data") != null ? JSON.parseObject(jsonObject.get("data").toString())
+                : null;
 
         if (data == null || data.get("token") == null) {
             return;
@@ -70,7 +177,8 @@ public class TestHttp {
             .other("X-User-Token", data.get("token").toString())
             .other("X-Source-Id", "1")
             .other("X-User-Mobile", mobile).build();
-        System.out.println(HttpClientUtil.get(HttpConfig.custom().encoding("UTF-8").url(url).headers(headers)));
+        System.out.println(
+            HttpClientUtil.get(HttpConfig.custom().encoding("UTF-8").url(url).headers(headers)));
 
     }
 
@@ -82,7 +190,8 @@ public class TestHttp {
 
         String url = urlPrefix + "/token/accessToken";
         String bizData = "{\"mobile\":\"18822221112\"}";
-        String html = HttpClientUtil.post(HttpConfig.custom().url(url).json(JSON.toJSONString(openApiParams(bizData))));
+        String html = HttpClientUtil
+            .post(HttpConfig.custom().url(url).json(JSON.toJSONString(openApiParams(bizData))));
         System.out.println("--------------html\n" + html);
     }
 
@@ -96,19 +205,27 @@ public class TestHttp {
         openApiParams.setTimestamp(DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
         openApiParams.setNonceId(UUID.randomUUID().toString().replace("-", "").toUpperCase());
         openApiParams.setBizData(bizData);
-        try {
-            Map<String, Object> signParams = ObjectMapUtil
-                .objectToMap(openApiParams, false, "sign", "encKey", "bizEnc", "callbackUrl");
-            SHA256withRSASign sign = new SHA256withRSASign(signParams, privateKey);
-            openApiParams.setSign(sign.sign());
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (SignException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Map<String, Object> signParams = ObjectMapUtil
+//                .objectToMap(openApiParams, false, "sign", "encKey", "bizEnc", "callbackUrl");
+//            SHA256withRSASign sign = new SHA256withRSASign(signParams, privateKey);
+//            openApiParams.setSign(sign.sign());
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        } catch (SignException e) {
+//            e.printStackTrace();
+//        }
         openApiParams.setCallbackUrl("http://192.168.190.250:8080/RiskWeb/risk/internal");
         return openApiParams;
     }
 
+    @Test
+    public void test() {
+        StringBuffer sb = new StringBuffer();
+        sb.append(",,,,,");
+        sb.append(",").append("12");
+        String[] arrayCityCode = sb.toString().split(",");
+        System.out.println(JSON.toJSONString(arrayCityCode));
+    }
 
 }

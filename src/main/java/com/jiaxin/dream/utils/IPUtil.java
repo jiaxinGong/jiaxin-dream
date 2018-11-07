@@ -1,9 +1,4 @@
-package com.jiaxin.dream.utils;/**
- * @Author: bufoon
- * @Email: song.anling@zyxr.com
- * @Datetime: Created In 2018/4/25 15:19
- * @Desc: as follows.
- */
+package com.jiaxin.dream.utils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;

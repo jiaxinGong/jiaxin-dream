@@ -1,9 +1,4 @@
-package com.jiaxin.dream.aop;/**
- * @Author: jiaxin Gong
- * @Email: gong.jiaxin@szrttx.com
- * @Datetime: Created In 2018/4/28 14:04
- * @Desc: as follows.
- */
+package com.jiaxin.dream.aop;
 
 import com.jiaxin.dream.exception.CheckException;
 import com.jiaxin.dream.model.ResultBean;
