@@ -16,16 +16,16 @@ public class Publish {
     Header[] headers = HttpHeader.custom()
         .other("Content-Type", "application/json")
         .other("authorization",
-            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDEzOTUxMjQsImlhdCI6MTU0MDc5MDMyNCwic3ViIjoxNjV9.kdcvtv_Ik5-V4IrxdsUgPcw2JsjZA7DsHTrzLbeAR_I")
+            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDMzNjgzMTcsImlhdCI6MTU0Mjc2MzUxNywic3ViIjoxNjV9.1oxmmCRCw75ChBI0R9uQWuHj7DeK637pdiLXBOOW4_Q")
         .build();
 
     @Test
     public void p() throws Exception {
-        int id = 38685;
+        int id = 45836;
         String url = fatUrlPrefix + id;
         String bodyJson = "{\n"
             + "    \"pushAdminId\": " + id + ",\n"
-            + "    \"name\": \"foxconn-approval-center\",\n"
+            + "    \"name\": \"thor-operation\",\n"
             + "    \"zone\": \"fat\"\n"
             + "}";
         String res = HttpClientUtil

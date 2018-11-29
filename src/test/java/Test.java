@@ -6,9 +6,16 @@ import java.util.Hashtable;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BrokenBarrierException;
+import java.util.concurrent.CompletionService;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorCompletionService;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.ThreadPoolExecutor.DiscardPolicy;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 
@@ -38,6 +45,13 @@ public class Test {
         sb.append("");
 
         double hh = 0.00001;
+
+        Executor executor = new ThreadPoolExecutor(1,2,1L, TimeUnit.SECONDS,new ArrayBlockingQueue<>(2),
+            new DiscardPolicy());
+
+        CompletionService completionService = new ExecutorCompletionService(executor,new ArrayBlockingQueue<>(10));
+
+        completionService.take();
     }
 
 
@@ -47,5 +61,10 @@ public class Test {
         List synchronizedList =  Collections.synchronizedList(list);
         synchronizedList.add(null);
 
+    }
+
+    @org.junit.Test
+    private void testSyn(){
+        Collections.synchronizedList(new ArrayList<>());
     }
 }
