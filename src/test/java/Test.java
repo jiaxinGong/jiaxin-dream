@@ -9,8 +9,12 @@ import java.util.Map;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.AbstractQueuedSynchronizer;
+import java.util.concurrent.locks.Lock;
 
 /**
  * <p>
@@ -25,27 +29,34 @@ public class Test {
     public static void main(String[] args) throws BrokenBarrierException, InterruptedException {
 
         int a = 128;
-        System.out.println((byte)a);
+        System.out.println((byte) a);
         int b = 129;
-        System.out.println((byte)b);
+        System.out.println((byte) b);
         int c = 255;
-        System.out.println((byte)c);
+        System.out.println((byte) c);
         int d = 256;
-        System.out.println((byte)d);
+        System.out.println((byte) d);
         int e = 257;
-        System.out.println((byte)e);
+        System.out.println((byte) e);
         StringBuffer sb = new StringBuffer();
         sb.append("");
 
-        double hh = 0.00001;
+        double hh = 0.00000101;
+        System.out.println("hh:"+hh);
+        AtomicInteger atomicInteger = new AtomicInteger(0);
+        System.out.println("getAndAdd=" + atomicInteger.getAndAdd(1));
+        System.out.println("addAndGet=" + atomicInteger.addAndGet(1));
     }
 
 
     @org.junit.Test
-    public void test(){
+    public void test() {
         List list = new ArrayList();
-        List synchronizedList =  Collections.synchronizedList(list);
+        List synchronizedList = Collections.synchronizedList(list);
         synchronizedList.add(null);
+
+        Executor executor = Executors.newCachedThreadPool();
+        ExecutorService executorService = Executors.newCachedThreadPool();
 
     }
 }

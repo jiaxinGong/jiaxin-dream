@@ -8,8 +8,10 @@ import java.time.LocalTime;
 import java.time.Month;
 import java.time.Period;
 import java.time.temporal.ChronoField;
+//import java.time.temporal.ChronoUnit;
 import java.time.temporal.ChronoUnit;
 import org.junit.Test;
+//import org.junit.Test;
 
 /**
  * <p>
@@ -69,6 +71,7 @@ public class Demo {
     public void testDuration() {
         Period period = Period.between(LocalDate.of(2018, 8, 1), LocalDate.of(2018, 8, 10));
 //        period.getDays()
+        System.out.println("period:" + period.getDays());
         System.out.println("period:" + period.getDays());
 
         Duration duration = Duration.of(3, ChronoUnit.MINUTES);

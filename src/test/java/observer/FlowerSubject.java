@@ -42,7 +42,7 @@ public class FlowerSubject {
         HuaKai("花开"), HuaXie("花谢");
         private String msg;
 
-        FlowerState(String msg){
+        FlowerState(String msg) {
             this.msg = msg;
         }
 
