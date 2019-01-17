@@ -19,7 +19,7 @@ public class BaseBoundedBuffer<V> {
         buf = (V[]) new Object[capacity];
     }
 
-    protected synchronized final void doPut(V v) throws InterruptedException {
+    protected synchronized final void doPut(V v) {
         // 放入数据
         buf[tail] = v;
         // 维护尾部指针
@@ -30,7 +30,7 @@ public class BaseBoundedBuffer<V> {
         ++count;
     }
 
-    protected synchronized final V doGet() throws InterruptedException {
+    protected synchronized final V doGet() {
         // 取出数据
         V v = buf[head];
         // 维护头部指针

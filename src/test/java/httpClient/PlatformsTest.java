@@ -14,13 +14,13 @@ import org.junit.Test;
 
 public class PlatformsTest {
 
-    private String urlPrefix = "http://127.0.0.1:8082/thor/api/v1";
-//    private String urlPrefix = "http://japi-dev.wolaidai.com/thor-operation/api/v1";
+//    private String urlPrefix = "http://127.0.0.1:8082/thor/api/v1";
+    private String urlPrefix = "https://japi-fat.wolaidai.com/thor-operation/api/v1";
 
     Header[] headers = HttpHeader.custom()
         .other("Content-Type", "application/json")
         .other("X-User-Mobile", "18026986473")
-        .other("X-Access-Token", "").build();
+        .other("x-user-token", "47a4b51b2551837e538106aacf0af1bd").build();
 
     @Test
     public void listPlatforms() throws HttpProcessException {

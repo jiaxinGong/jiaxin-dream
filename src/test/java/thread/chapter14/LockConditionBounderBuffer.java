@@ -12,7 +12,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * @author gong.jiaxin
  * @since 2018/12/26 7:25
  */
-public class ConditionBounderBuffer<T> {
+public class LockConditionBounderBuffer<T> {
 
     protected final Lock lock = new ReentrantLock();
     // 条件谓词： count < items.length

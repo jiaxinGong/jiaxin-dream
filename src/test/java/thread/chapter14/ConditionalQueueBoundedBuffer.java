@@ -8,11 +8,14 @@ package thread.chapter14;
  * @author gong.jiaxin
  * @since 2018/12/26 22:57
  */
-public class IfQueueBoundedBuffer<V> extends BaseBoundedBuffer<V> {
+public class ConditionalQueueBoundedBuffer<V> extends BaseBoundedBuffer<V> {
 
-    public IfQueueBoundedBuffer(int capacity) {
+    public ConditionalQueueBoundedBuffer(int capacity) {
         super(capacity);
     }
+
+    // 条件谓词 not-full (!isFull())
+    // 条件谓词 not-empty (!isEmpty())
 
     public synchronized V get() throws InterruptedException {
         while (isEmpty()) {
@@ -21,11 +24,10 @@ public class IfQueueBoundedBuffer<V> extends BaseBoundedBuffer<V> {
         boolean wasFull = isFull();
         V v = doGet();
         notifyAll();
-//        条件通知，比单词通知效率更高
+//        条件通知，比单次通知效率更高
 //        if(wasFull){
 //            notifyAll();
 //        }
-
         return v;
     }
 
