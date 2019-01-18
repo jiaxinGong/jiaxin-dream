@@ -1,8 +1,14 @@
 package thread.ProduceAndConsume;
 
+import java.util.Date;
 import java.util.Queue;
+import java.util.Random;
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+import org.apache.commons.lang3.time.DateFormatUtils;
 
 /**
  * <p>
@@ -14,44 +20,84 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class BlockingQueueInAction {
 
+    static ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(20, 20, 5L, TimeUnit.SECONDS,
+        new ArrayBlockingQueue<>(100));
+
     public static void main(String[] args) {
-        BlockingQueue queue = new LinkedBlockingQueue(10);
+        BlockingQueue queue = new LinkedBlockingQueue(15);
+
         // 10生产着
-        // 10个消费者
-    }
-
-}
-
-class Consumer {
-
-    BlockingQueue queue;
-
-    public Consumer(BlockingQueue queue) {
-        this.queue = queue;
-    }
-
-    // 消费
-    public Object consumer() {
-        Object result = null;
-        try {
-            result = queue.take();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        for (int i = 0; i < 10; i++) {
+            threadPoolExecutor.execute(new Produce("生产者name" + i, queue));
         }
-        return result;
+        // 10个消费者
+        for (int i = 10; i < 20; i++) {
+            threadPoolExecutor.execute(new Consumer("消费者name" + i, queue));
+        }
     }
+
 }
 
-class Produce {
+class Consumer implements Runnable {
 
+    private String name;
     BlockingQueue queue;
 
-    public Produce(BlockingQueue queue) {
+    public Consumer(String name, BlockingQueue queue) {
+        this.name = name;
         this.queue = queue;
     }
 
+
     // 消费
-    public void produce(Object o) {
-        queue.add(o);
+    public void consumer(String name) {
+        Object result = null;
+        while (true) {
+            try {
+                result = queue.take();
+                System.err
+                    .println(DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:sss") + name + "消费了一个：" + result);
+                TimeUnit.MILLISECONDS.sleep(500);
+            } catch (InterruptedException e) {
+            }
+        }
+    }
+
+    @Override
+    public void run() {
+        consumer(name);
+    }
+}
+
+class Produce implements Runnable {
+
+    private String name;
+    BlockingQueue queue;
+
+    public Produce(String name, BlockingQueue queue) {
+        this.name = name;
+        this.queue = queue;
+    }
+
+    // 生产
+    public void produce(String name) {
+        Random random = new Random();
+
+        while (true) {
+            try {
+                int o = random.nextInt(100000);
+                System.out.println(DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:sss") + name + "生产了一个：" + o);
+                queue.put(o);
+
+                TimeUnit.MILLISECONDS.sleep(500);
+            } catch (InterruptedException e) {
+            }
+        }
+    }
+
+
+    @Override
+    public void run() {
+        produce(name);
     }
 }
