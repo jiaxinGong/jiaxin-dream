@@ -28,7 +28,7 @@ public class ThorOperationAppTest {
         .other("Content-Type", "application/json")
         .other("X-User-Mobile", "18026986473")
 //        .other("x-user-token", "").build();
-        .other("x-user-token", "gmjhzoslbvbsq0292340377812205568").build();
+        .other("x-user-token", "njlowngmgvbhb0292596165835227136").build();
 
     @Test
     public void listApp() throws HttpProcessException {

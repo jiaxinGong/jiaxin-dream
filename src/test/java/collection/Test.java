@@ -51,7 +51,13 @@ public class Test {
             System.out.print("k:" + k);
             System.out.println(" v:" + v);
         });
+    }
 
-
+    @org.junit.Test
+    public void testInitArray(){
+        int[] intArray = new int[5];
+        for(int i =0;i<5;i++){
+            System.out.println(intArray[i]);
+        }
     }
 }

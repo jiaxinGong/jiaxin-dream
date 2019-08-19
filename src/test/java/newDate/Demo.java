@@ -77,4 +77,14 @@ public class Demo {
         Duration duration = Duration.of(3, ChronoUnit.MINUTES);
         System.out.println("duration.getSeconds():" + duration.getSeconds());
     }
+
+    public static void main(String[] args) {
+        LocalDateTime localDateTime = LocalDateTime.of(2019,8,5,17,55,01);
+        LocalDateTime localDateTime2 = LocalDateTime.of(2019,8,5,17,57,58);
+        Duration duration = Duration.between(localDateTime,localDateTime2);
+        System.out.println(duration.getSeconds());
+        System.out.println(duration.getSeconds());
+        System.out.println(duration.getSeconds());
+        System.out.println(System.currentTimeMillis());
+    }
 }

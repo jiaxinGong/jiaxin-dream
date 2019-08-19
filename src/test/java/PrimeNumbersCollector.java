@@ -5,12 +5,11 @@ import java.util.stream.Collector;
 /**
  * 质数收集器
  */
-public class PrimeNumbersCollector implements Collector<Integer, Map<Boolean, List<Integer>>, Map<Boolean, List<Integer>>> {
+public class PrimeNumbersCollector implements
+    Collector<Integer, Map<Boolean, List<Integer>>, Map<Boolean, List<Integer>>> {
 
     /**
      * 结果容器
-     *
-     * @return
      */
     @Override
     public Supplier<Map<Boolean, List<Integer>>> supplier() {
@@ -22,8 +21,6 @@ public class PrimeNumbersCollector implements Collector<Integer, Map<Boolean, Li
 
     /**
      * 将新的元素添加到结果容器
-     *
-     * @return
      */
     @Override
     public BiConsumer<Map<Boolean, List<Integer>>, Integer> accumulator() {
@@ -50,8 +47,6 @@ public class PrimeNumbersCollector implements Collector<Integer, Map<Boolean, Li
 
     /**
      * 对结果容器应用最终转换
-     *
-     * @return
      */
     @Override
     public Function<Map<Boolean, List<Integer>>, Map<Boolean, List<Integer>>> finisher() {
@@ -60,12 +55,10 @@ public class PrimeNumbersCollector implements Collector<Integer, Map<Boolean, Li
 
     /**
      * 合并两个结果容器
-     *
-     * @return
      */
     @Override
     public BinaryOperator<Map<Boolean, List<Integer>>> combiner() {
-        return (Map<Boolean, List<Integer>> map1,Map<Boolean, List<Integer>> map2) ->{
+        return (Map<Boolean, List<Integer>> map1, Map<Boolean, List<Integer>> map2) -> {
             map1.get(true).addAll(map2.get(true));
             map1.get(false).addAll(map2.get(false));
             return map1;
@@ -74,8 +67,6 @@ public class PrimeNumbersCollector implements Collector<Integer, Map<Boolean, Li
 
     /**
      * 定义了收集器的行为
-     *
-     * @return
      */
     @Override
     public Set<Characteristics> characteristics() {

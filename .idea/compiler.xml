@@ -10,7 +10,10 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="jiaxin-dream" target="1.8" />
+      <module name="pick-coffee" target="1.8" />
+      <module name="pick-coffee-api" target="1.8" />
+      <module name="pick-coffee-core" target="1.8" />
+      <module name="pick-coffee-web" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="jiaxin-dream:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="jiaxin-dream.war">
-      <element id="artifact" artifact-name="jiaxin-dream:war exploded" />
-    </root>
-  </artifact>
-</component>
