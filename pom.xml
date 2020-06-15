@@ -27,7 +27,7 @@
         <httpmime.version>${httpclient.version}</httpmime.version>
         <httpasyncclient.version>4.0</httpasyncclient.version>
         <fastJson.version>1.2.44</fastJson.version>
-        <hibernate.version>4.2.0.Final</hibernate.version>
+        <hibernate.version>5.3.5.Final</hibernate.version>
     </properties>
 
     <dependencies>
