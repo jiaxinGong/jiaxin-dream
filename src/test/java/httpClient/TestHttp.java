@@ -27,17 +27,7 @@ import com.jiaxin.dream.utils.httpclient.common.HttpHeader;
  */
 public class TestHttp {
 
-    //    private String wldSecret = "8jifu87asdggas7nk0sjfhu85asd153";
-    private String wldSecret = "5b66f77c880df4f9dfee51306899999";
-    private String privateKey = "MIICeAIBADANBgkqhkiG9w0BAQEFAASCAmIwggJeAgEAAoGBAJ9qLLYnladKSyFwhVXJe3gKbX1iqBlAXC1xxUraHu+ysX0PzNURPwRiHICSgTMt3O4JKNbYgDfVQC9KX0BlDL178yCPextFGblx96/Euwq5TYGOighV5pupEtierJZXifGVfTHfTsg/ypQKDYsyxyP/7kk1j4uiF+Ys+iYaiuJTAgMBAAECgYEAg3TPmAo+e2xlVhburNZwLYYT0dC4I9KR8JugAOCroCfv+tw7ofwNxjSNomythCGuzM/a0IhJ+0CsJBMlRvnNLWRnO/5lBag+/CebDS2uwFcdzxDNYqg/H0Wc8fGqvowoS2Rl9iyv8Xex/qA8+G36MX5Fh6EFcJWqNUktniZC3FkCQQD1pKd8ciXHR8GCzusgbxfR17SA1Kxk+hNK2jEDolJ4CfcSVm4tuQfWXAazFpYU+QXn1Mu1X7vI2OCLifShZv/dAkEApiLQrn4lhehreb43PWLoqKDYT3g59IGS/8KorskGzfR2d012dryvHAI2HLAKugqolPrsTPEhJNvQ3lF3vLtf7wJBALqZMYGfVINlRuKPPJ2OxpFpQnz7EVpDfZRG2yTfkbYOG9maPmgNPp7fmVdBuRCFeq75PyWwa33PAgP98A8LpyECQAHSmfWAHstETIGOa665uhG3igf9Kq2bClDSAuXAANobl30hlW4iDc3B3HQeHlACM+1Gf3csog90desqe6TPbXMCQQCg90/7CDf34a28ik/+5gNgDlHwnGNzk8tR+EZt8BpOQ6zZukcE2dPuA0HLH2ADAfpm6lfcHXP8JgukS+oraLHS";
-    //    private String urlPrefix = "http://192.168.9.112:9006/gateway";
-//    private String urlPrefix = "http://192.168.190.205:9006/gateway";
-//    private String urlPrefix = "https://api.jldloan.com/risk-gateway-web";
-//    private String urlPrefix = "http://192.168.190.205:8088/risk-gateway-web";
-//    private String urlPrefix = "http://192.168.9.101/risk-gateway-web";
-//    private String urlPrefix = "http://127.0.0.1:8082/thor/api/v1";
-    private String urlPrefix = "http://japi-dev.wolaidai.com/thor-operation/api/v1";
-//    private String urlPrefix = "http://101.fout.zyxr.com:2880/risk-gateway-web"; //http://112.fout.zyxr.com:2880/
+    private String urlPrefix = "http://127.0.0.1:8080/thor-operation/api/v1";
 
     @Test
     public void findAllPartner() throws HttpProcessException {
@@ -112,7 +102,7 @@ public class TestHttp {
         String url = urlPrefix + "/platform/add";
         Map<Object, Object> param = new HashMap<>();
 //        param.put("parterCode", "test66");
-        param.put("icon", "http://web.wolaidai.com/webapp/yhd/img/platform-ax.png");
+        param.put("icon", "http://127.0.0.1:8080/webapp/yhd/img/platform-ax.png");
         param.put("city", "666");
         param.put("province", "666666");
         param.put("productCode", "AX-6");
@@ -132,7 +122,7 @@ public class TestHttp {
         Map<Object, Object> param = new HashMap<>();
         param.put("id", 3);
         param.put("name", "test33");
-        param.put("icon", "http://web.wolaidai.com/webapp/yhd/img/platform-ax.png");
+        param.put("icon", "http://127.0.0.1:8080/webapp/yhd/img/platform-ax.png");
         param.put("city", "222223");
         param.put("province", "3323");
 //        param.put("productCode","AX-XJD4");
@@ -146,14 +136,14 @@ public class TestHttp {
     }
 
     /**
-     * 我来贷查询用户信息
+     * 查询用户信息
      */
     @Test
     public void testgetUserInfo() throws Exception {
 //        String url = "https://japi-fat.wolaidai.com/wall/api/v1/user/info";
 //        String tokenurl = urlPrefix + "/token/accessToken";
-        String url = "https://channels.wolaidai.com/wall/api/v1/user/info";
-        String tokenurl = "https://api.jldloan.com/risk-gateway-web/token/accessToken";
+        String url = "http://127.0.0.1:8080/wall/api/v1/user/info";
+        String tokenurl = "http://127.0.0.1:8080/risk-gateway-web/token/accessToken";
         String mobile = "15863279927";
         String bizData = "{\"mobile\":\"" + mobile + "\"}";
         String html = HttpClientUtil
